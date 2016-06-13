@@ -20,6 +20,8 @@ Check your work by running `deis version`:
     $ deis version
     2.0.0
 
+> **NOTE:** Version numbers may vary as new releases become available
+
 ## Helm Classic Installation
 
 We will install Deis Workflow using Helm Classic which is a tool for installing and managing software in a Kubernetes cluster.
