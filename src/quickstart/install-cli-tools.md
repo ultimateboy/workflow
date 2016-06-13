@@ -27,6 +27,11 @@ Install the latest `helmc` cli for Linux or Mac OS X with:
 
 > **NOTICE:** The `unzip` package is a requirement for this command
 
+The installer places the `helmc` binary in your current directory, but you
+should move it somewhere in your $PATH:
+
+    $ ln -fs $PWD/helmc /usr/local/bin/helmc
+
 *or*:
 
 1. Grab a prebuilt binary from:
