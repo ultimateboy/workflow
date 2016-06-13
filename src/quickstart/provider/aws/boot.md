@@ -5,14 +5,14 @@ guide uses AWS EC2 to boot a Kubernetes cluster using the open source provisioni
 
 ## Pre-requisites
 
-1. You need an active AWS account. Visit [](http://aws.amazon.com) to sign up
+1. You need an active AWS account. Visit [AWS portal](http://aws.amazon.com) to sign up
 2. You need AWS API keys with full access
-3. Install the AWS cli tools, you can find instructions for your platform at [](https://aws.amazon.com/cli/)
+3. Install the AWS cli tools, you can find instructions for your platform at [AWS Command Line Interface Site](https://aws.amazon.com/cli/)
 
 To verify that your CLI is configured properly, run `aws ec2 describe-regions`:
 
 ```
-$ aws ec2 describe-regions
+$ aws ec2 describe-regions --output=text
 REGIONS	ec2.eu-west-1.amazonaws.com	eu-west-1
 REGIONS	ec2.ap-southeast-1.amazonaws.com	ap-southeast-1
 REGIONS	ec2.ap-southeast-2.amazonaws.com	ap-southeast-2
@@ -102,7 +102,7 @@ We are now ready to boot our first Kubernetes cluster on AWS!
 Since this script does a **lot** of stuff, we'll break it into sections.
 
 ```
-$ ./clusters/kube-up.sh
+$ ./cluster/kube-up.sh
 Creating a kubernetes on aws...
 ... Starting cluster in us-west-1c using provider aws
 ... calling verify-prereqs
@@ -273,7 +273,7 @@ admin@ip-172-20-0-9:~$
 ```
 
 When you are finished with the Kubernetes cluster, you may terminate the AWS resources by running
-`./clusters/kube-down.sh`. If you are using a new shell environement you will need to set the environment variables we
+`./cluster/kube-down.sh`. If you are using a new shell environment you will need to set the environment variables we
 used above so `kube-down.sh` can find the right cluster.
 
 You are now ready to [install Deis Workflow](install-aws.md)
