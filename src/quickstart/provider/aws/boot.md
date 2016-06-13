@@ -79,6 +79,22 @@ Last, so you can easily identify instances in the AWS Console, specify an instan
 export INSTANCE_PREFIX=first-k8s
 ```
 
+## Setup kubectl CLI
+
+Very soon, we will need to use `kubectl` to check everything is running smooth and
+for that let's get it on the $PATH.
+
+For Mac OS, run:
+
+    $ ln -fs $PWD/platforms/darwin/amd64/kubectl /usr/local/bin/kubectl
+
+For Linux, use this instead:
+
+    $ sudo ln -fs $PWD/platforms/linux/amd64/kubectl /usr/local/bin/kubectl
+
+> **NOTE:** If you are using any other architecture, you can look at the
+> `platforms/<os>/<arch>` tree to see all the available binaries
+
 ## Boot Your First Cluster
 
 We are now ready to boot our first Kubernetes cluster on AWS!
