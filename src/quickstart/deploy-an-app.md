@@ -95,8 +95,14 @@ proper-barbecue-v18-cmd-rk644 up (v18)
 proper-barbecue-v18-cmd-0ag04 up (v18)
 ```
 
-Congratulations! You have deployed, configured, and scaled your first application using Deis Workflow. There is a lot
-more you can do with Deis Workflow, play around with the CLI:
+Congratulations! You have deployed, configured, and scaled your first application using Deis Workflow. 
+
+## Going Further
+There is a lot more you can do with Deis Workflow, play around with the CLI:
+
+> **IMPORTANT:** In order to have permission to push an app you must add a SSH key
+> to your user on the Deis Workflow. For more information, please check
+> [Users and SSH Keys](../users/ssh-keys/) and [Troubleshooting Workflow](../troubleshooting/) sections out.
 
 * Roll back to a previous release with `deis rollback -a proper-barbecue`
 * See application logs with `deis logs -a proper-barbecue`
