@@ -44,7 +44,7 @@ The helm classic chart for Deis Workflow can be easily configured to connect Wor
         * Update the `storage` parameter to reference the storage platform you are using: `s3`, `azure`, `gcs`
         * Update the values in the section which corresponds to your storage type, including region, bucket names and access credentials
     * Note: you do not need to base64 encode any of these values as Helm Classic will handle encoding automatically
-* **Step 5:** Save your changes and re-generate the helm classic chart by running `helmc generate -x manifests workflow-v2.0.0` (if you have previously ran this step, make sure you add `-f` to force its regeneration)
+* **Step 5:** Save your changes and re-generate the helm classic chart by running `helmc generate -x manifests workflow-v2.0.0` (if you have previously run this step, make sure you add `-f` to force its regeneration)
 * **Step 6:** Check the generated file in your manifests directory, you should see `deis-objectstorage-secret.yaml`
 
 You are now ready to `helmc install workflow-v2.0.0` using your desired object storage.

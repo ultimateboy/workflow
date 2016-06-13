@@ -81,7 +81,7 @@ export INSTANCE_PREFIX=first-k8s
 
 ## Setup kubectl CLI
 
-Very soon, we will need to use `kubectl` to check everything is running smooth and
+Very soon, we will need to use `kubectl` to check everything is running smoothly and
 for that let's get it on the $PATH.
 
 For Mac OS, run:
