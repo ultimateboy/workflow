@@ -25,6 +25,8 @@ Install the latest `helmc` cli for Linux or Mac OS X with:
 
     $ curl -sSL https://get.helm.sh | bash
 
+> **NOTICE:** The `unzip` package is a requirement for this command
+
 *or*:
 
 1. Grab a prebuilt binary from:
