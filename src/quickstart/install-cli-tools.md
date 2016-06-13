@@ -12,6 +12,9 @@ should move it somewhere in your $PATH:
 
     $ ln -fs $PWD/deis /usr/local/bin/deis
 
+> **NOTE:** If you are using Linux you may have to prepend this command
+> with `sudo`
+
 Check your work by running `deis version`:
 
     $ deis version
@@ -31,6 +34,9 @@ The installer places the `helmc` binary in your current directory, but you
 should move it somewhere in your $PATH:
 
     $ ln -fs $PWD/helmc /usr/local/bin/helmc
+
+> **NOTE:** If you are using Linux you may have to prepend this command
+> with `sudo`
 
 *or*:
 
