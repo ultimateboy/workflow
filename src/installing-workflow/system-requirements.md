@@ -4,7 +4,21 @@ To run Deis Workflow on a Kubernetes cluster, there are a few requirements to ke
 
 ## Kubernetes Versions
 
-Deis Workflow has been tested with the **Kubernetes v1.2** release line. It is incompatible with Kubernetes v1.1 and earlier.
+Deis Workflow requires Kubernetes v1.2, or v1.3.4 or newer. Workflow is not compatible with
+Kubernetes v1.1, and Kubernetes v1.3.0 through v1.3.3 have
+[a bug when mounting secrets](https://github.com/deis/workflow/issues/372) which prevents Deis
+Workflow from starting.
+
+## Storage Requirements
+
+A variety of Deis Workflow components rely on an object storage system to do their work, including storing application
+slugs, Docker images and database logs.
+
+Deis Workflow ships with Minio by default, which provides in-cluster, ephemeral object storage. This means that if the
+Minio server crashes, all data will be lost. Therefore, Minio should be used for development or testing only.
+
+Workflow supports Amazon Simple Storage Service (S3), Google Cloud Storage (GCS), OpenShift Swift, and Azure Blob
+Storage. See [configuring object storage][storage-configuration] for setup instructions.
 
 ## Resource Requirements
 
@@ -26,19 +40,16 @@ application footprint as well.
 Running smaller machines will likely result in increased system load and has been known to result in component failures
 and instability.
 
-## Docker Insecure Registry
-
-The on-cluster Docker registry is not deployed with TLS enabled. As such, all Kubernetes worker nodes must have their
-Docker daemons configured to use an **insecure registry**. The configured subnet should encompass any private networks
-used by your worker nodes, including overlay networks.
-
-Depending on your Kubernetes and Docker configuration, setting `EXTRA_DOCKER_OPTS="--insecure-registry=10.0.0.0/8"` may
-be sufficient.
+!!! warning
+	Workflow versions prior to 2.2 require '--insecure-registry' to function properly. Depending on
+	your Kubernetes and Docker configuration, setting
+	`EXTRA_DOCKER_OPTS="--insecure-registry=10.0.0.0/8"` may be sufficient.
 
 ## SELinux + OverlayFS
 
 If you are using Docker with OverlayFS, you must disable SELinux by adding `--selinux-enabled=false` to
 `EXTRA_DOCKER_OPTS`. For more background information, see:
 
+* [storage-configuration](configuring-object-storage.md)
 * [https://github.com/docker/docker/issues/7952](https://github.com/docker/docker/issues/7952)
-* [https://github.com/deis/postgres/issues/63](https://github.com/deis/postgres/issues/63)
+* [https://github.com/deis/workflow/issues/63](https://github.com/deis/postgres/issues/63)

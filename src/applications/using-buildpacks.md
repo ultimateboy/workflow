@@ -2,6 +2,21 @@
 
 Deis supports deploying applications via [Heroku Buildpacks][]. Buildpacks are useful if you're interested in following Heroku's best practices for building applications or if you are deploying an application that already runs on Heroku.
 
+## Add SSH Key
+ 
+For **Buildpack** based application deploys via `git push`, Deis Workflow identifies users via SSH keys. SSH keys are pushed to the platform and must be unique to each user.
+
+- See [this document](../users/ssh-keys.md/#generate-an-ssh-key) for instructions on how to generate an SSH key.
+
+- Run `deis keys:add` to upload your SSH key to Deis Workflow.
+
+```
+$ deis keys:add ~/.ssh/id_deis.pub
+Uploading id_deis.pub to deis... done
+```
+
+Read more about adding/removing SSH Keys [here](../users/ssh-keys.md/#adding-and-removing-ssh-keys).
+
 ## Prepare an Application
 
 If you do not have an existing application, you can clone an example application that demonstrates the Heroku Buildpack workflow.
@@ -12,7 +27,7 @@ If you do not have an existing application, you can clone an example application
 
 ## Create an Application
 
-Use `deis create` to create an application on the [controller][].
+Use `deis create` to create an application on the [Controller][].
 
     $ deis create
     Creating application... done, created skiing-keypunch
@@ -98,6 +113,21 @@ To use a custom buildpack, set the `BUILDPACK_URL` environment variable.
     If, however, you're unable to deploy using the latest version of the buildpack, You can set an exact version of a buildpack by using a git revision in your `BUILDPACK_URL`. For example: `BUILDPACK_URL=https://github.com/dpiddy/heroku-buildpack-ruby-minimal#v13`
 
 On your next `git push`, the custom buildpack will be used.
+
+
+## Compile Hooks
+
+Sometimes, an application needs a way to stop or check if a service is running before building an
+app, which may require notifying a service that the [Builder][] has finished compiling the app. In
+order to do this, an app can provide two files in their `bin/` directory:
+
+```
+bin/pre-compile
+bin/post-compile
+```
+
+The builder will run these commands before and after the build process, respectively.
+
 
 ## Using Private Repositories
 

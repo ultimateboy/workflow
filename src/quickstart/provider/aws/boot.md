@@ -34,12 +34,12 @@ $ mkdir my-first-cluster
 $ cd my-first-cluster
 ```
 
-Download Kubernetes release v1.2.4, and extract the archive on your machine.
+See [Kubernetes Versions](https://deis.com/docs/workflow/installing-workflow/system-requirements/#kubernetes-versions) under System Requirements and download a Kubernetes release that is compatible with Deis Workflow, and extract the archive on your machine.
 
-This archive has everything that you need to launch Kubernetes. It weighs in around 500MB, so it may take some time to download:
+This archive has everything that you need to launch Kubernetes. It's a fairly large archive, so it may take some time to download:
 
 ```
-$ curl -sSL https://storage.googleapis.com/kubernetes-release/release/v1.2.4/kubernetes.tar.gz -O
+$ curl -sSL https://storage.googleapis.com/kubernetes-release/release/v1.3.5/kubernetes.tar.gz -O
 $ tar -xvzf kubernetes.tar.gz
 $ cd kubernetes
 $ ls
@@ -50,11 +50,6 @@ LICENSES     README.md    Vagrantfile  cluster/     contrib/     docs/        ex
 
 Before calling the Kubernetes setup scripts, we need to change a few defaults so that Deis Workflow works best. Type
 each of these commands into your terminal application before calling `kube-up.sh`.
-
-First, enable insecure registry support for Docker:
-```
-$ export KUBE_ENABLE_INSECURE_REGISTRY=true
-```
 
 Next, pick the AWS Availability Zone you would like to use. The boot script will create a new VPC in that region.
 
@@ -71,7 +66,7 @@ your instance sizes and worker count.
 export MASTER_SIZE=t2.medium
 export NODE_SIZE=t2.large
 export NUM_NODES=2
-export MINION_ROOT_DISK_SIZE=100
+export NODE_ROOT_DISK_SIZE=100
 ```
 
 Last, so you can easily identify instances in the AWS Console, specify an instance prefix:

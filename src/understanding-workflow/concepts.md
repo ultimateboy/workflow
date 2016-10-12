@@ -22,10 +22,11 @@ donated to the [Cloud Native Compute Foundation][cncf]. Kubernetes manages all
 the activity on your cluster, including: desired state convergence, stable
 service addresses, health monitoring, service discovery, and DNS resolution.
 
-Workflow builds upon Kubernetes abstractions like Services, Replication
-Controllers, and Pods to provide a developer-friendly experience. Building containers
-directly from application source code, aggregating logs, and managing deployment
-configurations and app releases are just some of the features Workflow adds.
+Workflow builds upon Kubernetes abstractions like Services,
+Deployments and Pods to provide a developer-friendly experience.
+Building containers directly from application source code, aggregating logs,
+and managing deployment configurations and app releases are just some of the
+features Workflow adds.
 
 Deis Workflow is a set of Kubernetes-native components, installable via
 [Helm Classic][helm]. Systems engineers who are familiar with Kubernetes will feel right
@@ -98,7 +99,7 @@ build is created or application configuration is changed. Tracking releases as a
 ### Run Stage
 
 The run stage deploys the new release to the underlying Kubernetes cluster by
-launching a new Replication Controller which references the new release.
+changing the Deployment object which references the new release.
 By managing the desired replica count, Workflow
 orchestrates a zero-downtime, rolling update of your application. Once
 successfully updated, Workflow removes the last reference to the old release.

@@ -49,7 +49,7 @@ Add your certificate, any intermediate certificates, and private key to the endp
     www.example.com
 
 !!! note
-    The name given to the certificate can only contain a-z (lowercase), 0-9 and hypens
+    The name given to the certificate can only contain a-z (lowercase), 0-9 and hyphens
 
 The Deis platform will investigate the certificate and extract any relevant information from it
 such as the Common Name, Subject Alt Names (SAN), fingerprint and more.
@@ -72,7 +72,7 @@ After that, you can add them to Deis with the `certs:add` command:
 
 ## Attach SSL certificate to a domain
 
-Certificates are not automagically conneced up to domains, instead you will have to attach a
+Certificates are not automagically connected up to domains, instead you will have to attach a
 certificate to a domain
 
     $ deis certs:attach example-com example.com
@@ -124,6 +124,21 @@ Pay attention to the output. It should print `SSL certificate verify ok`. If it 
 like `common name: www.example.com (does not match 'www.somedomain.com')` then something is not
 configured correctly.
 
+## Enforcing SSL at the Router
+
+To enforce all HTTP requests be redirected to HTTPS, TLS can be enforced at the router level by
+running
+
+    $ deis tls:enable -a foo
+    Enabling https-only requests for foo... done
+
+Users hitting the HTTP endpoint for the application will now receive a 301 redirect to the HTTPS
+endpoint.
+
+To disable enforced TLS, run
+
+    $ deis tls:disable -a foo
+    Disabling https-only requests for foo... done
 
 ## Remove Certificate
 

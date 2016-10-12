@@ -22,12 +22,12 @@ $ mkdir my-first-cluster
 $ cd my-first-cluster
 ```
 
-Download Kubernetes release v1.2.4, and extract the archive on your machine.
+See [Kubernetes Versions](https://deis.com/docs/workflow/installing-workflow/system-requirements/#kubernetes-versions) under System Requirements and download a Kubernetes release that is compatible with Deis Workflow, and extract the archive on your machine.
 
-This archive has everything that you need to launch Kubernetes. It weighs in around 500MB, so it may take some time to download:
+This archive has everything that you need to launch Kubernetes. It's a fairly large archive, so it may take some time to download:
 
 ```
-$ curl -sSL https://storage.googleapis.com/kubernetes-release/release/v1.2.4/kubernetes.tar.gz -O
+$ curl -sSL https://storage.googleapis.com/kubernetes-release/release/v1.3.5/kubernetes.tar.gz -O
 $ tar -xvzf kubernetes.tar.gz
 $ cd kubernetes
 $ ls
@@ -39,9 +39,9 @@ LICENSES     README.md    Vagrantfile  cluster/     contrib/     docs/        ex
 Before calling the Kubernetes setup scripts, we need to change a few defaults so that Deis Workflow works best. Type
 each of these commands into your terminal application before calling `kube-up.sh`.
 
-First, enable insecure registry support for Docker and use Vagrant as the provider:
+First, use Vagrant as the provider:
+
 ```
-$ export KUBE_ENABLE_INSECURE_REGISTRY=true
 $ export KUBERNETES_PROVIDER=vagrant
 ```
 

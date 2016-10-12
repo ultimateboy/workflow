@@ -10,17 +10,19 @@ Install the latest `deis` client for Linux or Mac OS X with:
 The installer places the `deis` binary in your current directory, but you
 should move it somewhere in your $PATH:
 
-    $ ln -fs $PWD/deis /usr/local/bin/deis
+    $ sudo ln -fs $PWD/deis /usr/local/bin/deis
 
-> **NOTE:** If you are using Linux you may have to prepend this command
-> with `sudo`
+*or*:
+
+    $ sudo mv $PWD/deis /usr/local/bin/deis
 
 Check your work by running `deis version`:
 
     $ deis version
-    2.0.0
+    2.1.0
 
-> **NOTE:** Version numbers may vary as new releases become available
+!!! note
+    Note that version numbers may vary as new releases become available
 
 ## Helm Classic Installation
 
@@ -30,27 +32,22 @@ Install the latest `helmc` cli for Linux or Mac OS X with:
 
     $ curl -sSL https://get.helm.sh | bash
 
-> **NOTE:** The `unzip` package is a requirement for this command
+!!! note
+    Note that the `unzip` package is a requirement for this command
 
 The installer places the `helmc` binary in your current directory, but you
 should move it somewhere in your $PATH:
 
-    $ ln -fs $PWD/helmc /usr/local/bin/helmc
-
-> **NOTE:** If you are using Linux you may have to prepend this command
-> with `sudo`
+    $ sudo ln -fs $PWD/helmc /usr/local/bin/helmc
 
 *or*:
 
-1. Grab a prebuilt binary from:
-  - the latest release: [ ![Download](https://api.bintray.com/packages/deis/helm/helmc/images/download.svg) ](https://bintray.com/deis/helm/helmc/_latestVersion#files)
-  - the CI build pipeline: [ ![Download](https://api.bintray.com/packages/deis/helm-ci/helmc/images/download.svg) ](https://bintray.com/deis/helm-ci/helmc/_latestVersion#files)
-2. Unzip the package and make sure `helmc` is available on the PATH.
+    $ sudo mv $PWD/helmc /usr/local/bin/helmc
 
 Check your work by running `helmc --version`:
 
     $ helmc --version
-    helmc version 0.8.1+e4b3983
+    helmc version 0.8.1+a9c55cf
 
 Make sure you are running at least version 0.8.1 or newer.
 

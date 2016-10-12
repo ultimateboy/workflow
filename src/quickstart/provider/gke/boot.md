@@ -34,6 +34,12 @@ For development and testing, we recommend you use the `n1-standard-2` machine ty
 
 Click "Create" and Google Container Engine will provision your cluster. The process will take a few minutes to complete.
 
+## Check Kubernetes version
+
+![](images/gke-node-version.jpg)]
+
+After the cluster is created, check the node version. See [Kubernetes Versions](https://deis.com/docs/workflow/installing-workflow/system-requirements/#kubernetes-versions) under System Requirements for more details.
+
 ## Install and configure the Google Cloud CLI
 
 While your container cluster is booting. You will need to install the Google Cloud CLI tools. We will use the tools to fetch cluster credentials to authenitcate to your new Kubernetes cluster.
@@ -58,7 +64,7 @@ Then list your container clusters:
 ```
 $ gcloud container clusters list
 NAME       ZONE           MASTER_VERSION  MASTER_IP        MACHINE_TYPE   NODE_VERSION  NUM_NODES  STATUS
-cluster-1  us-central1-b  1.2.4           104.154.234.246  n1-standard-2  1.2.3 *       2          RUNNING
+cluster-1  us-central1-b  1.4.0           104.154.234.246  n1-standard-2  1.4.0 *       2          RUNNING
 ```
 
 If you haven't configured your default zone, make sure it matches the ZONE for your cluster:

@@ -21,7 +21,7 @@ to create a new account. After successful registration you will be logged in as 
     Logged in as myuser
 
 !!! important
-    The first user to register with Deis Workflow is automatically becomes an administrator. Additional users who register will be ordinary users.
+    The first user to register with Deis Workflow automatically becomes an administrator. Additional users who register will be ordinary users.
 
 ## Login to Workflow
 
@@ -61,24 +61,14 @@ Deis Workflow supports three registration modes:
 | disabled          | Does not allow anyone to register new users.    |
 | admin\_only       | Only existing admins may register new users     |
 
-To modify the registration mode for Workflow you must add or modify the `REGISTRATION_MODE` environment variable. If
-Deis Workflow is already up and running, you may use `kubectl --namespace=deis edit rc deis-controller`:
+To modify the registration mode for Workflow you may add or modify the `REGISTRATION_MODE` environment variable for the
+controller component. If Deis Workflow is already running, use:
 
-Find the `REGISTRATION_MODE` environment variable in the template file or add the appropriate section:
+`kubectl --namespace=deis patch deployments deis-controller -p '{"spec":{"template":{"spec":{"containers":[{"name":"deis-controller","env":[{"name":"REGISTRATION_MODE","value":"disabled"}]}]}}}}'`
 
-![](../images/controller-registration-mode.png)
+Modify the `value` portion to match the desired mode.
 
-Once you save the Replication Controller configuration, you need to find and delete the controller Pod.
-
-```
-~ $ kubectl --namespace=deis get po | egrep deis-controller
-deis-controller-lto6v         1/1       Running   1          2h
-~ $ kubectl --namespace=deis delete po deis-controller-lto6v
-pod "deis-controller-lto6v" deleted
-```
-
-Kubernetes will automatically start a new Pod with the new environment variables set. Note that you will incur downtime
-for the Workflow API only. All running applications will continue to function.
+Kubernetes will automatically deploy a new ReplicaSet and corresponding Pod with the new environment variables set.
 
 ## Managing Administrative Permissions
 
@@ -132,5 +122,24 @@ If there is a cluster wide security breach, an administrator can regenerate ever
 
     $ deis auth:regenerate --all=true
 
+
+## Changing Account Password
+
+A user can change their own account's password like this:
+
+```
+$ deis auth:passwd
+current password:
+new password:
+new password (confirm):
+```
+
+An administrator can change the password of another user's account like this:
+
+```
+$ deis auth:passwd --username=<username>
+new password:
+new password (confirm):
+```
 
 [controller]: ../understanding-workflow/components.md#controller

@@ -17,7 +17,7 @@ Before triaging an issue very far, make sure that the issue's author provided th
 -   a reproducible case if this is a bug
 -   page URL if this is a docs issue or the name of a man page
 
-Depending on the issue, you might not feel all this information is needed. Use your best judgement.  If you cannot triage an issue using what its author provided, explain kindly to the author that they must provide the above information to clarify the problem.
+Depending on the issue, you might not feel all this information is needed. Use your best judgment. If you cannot triage an issue using what its author provided, explain kindly to the author that they must provide the above information to clarify the problem.
 
 If the author provides the recommended information but you are still unable to triage the issue, request additional information. Do this kindly and politely because you are asking for more of the author's time.
 
@@ -60,8 +60,9 @@ security     | Security-related issues such as TLS encryption, network segregati
 
 When attached to a specific milestone, an issue can be attributed one of the following labels to indicate their degree of priority.
 
-Priority    | Description
-------------|---------------------------------------------------------------------------------------------------------------------------------------------
-showstopper | Urgent: Security, critical bugs, blocking issues. "showstopper" basically means drop everything you are doing until this issue is addressed.
+Priority   | Description
+-----------|-----------------------------------------------------------------------------------------------------------------------------------
+priority&nbsp;0 | Urgent: Security, critical bugs, blocking issues. Drop everything and fix this today, then consider creating a patch release.
+priority&nbsp;1 | Serious: Impedes user actions or is a regression. Fix this before the next planned release.
 
 And that's it. That should be all the information required for a new or existing contributor to come in an resolve an issue.

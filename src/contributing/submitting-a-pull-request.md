@@ -26,6 +26,26 @@ See [testing](testing.md) for more information.
 
 Changes to any Deis Workflow component that could affect a user's experience also require a change or addition to the relevant documentation. For most Deis components, this involves updating the component's _own_ documentation. In some cases where a component is tightly integrated into [deis/workflow][workflow], its documentation must also be updated.
 
+## Cross-repo commits
+
+If a pull request is part of a larger piece of work involving one or more additional commits in other Workflow repositories, these commits can be referenced in the last PR to be submitted.  The downstream [e2e test job](https://ci.deis.io/job/workflow-test-pr/) will then supply every referenced commit (derived from PR issue number supplied) to the test runner so it can source the necessary Docker images for inclusion in the generated Workflow chart to be tested.
+
+For example, consider paired commits in [deis/controller](https://github.com/deis/controller) and [deis/workflow-e2e](https://github.com/deis/workflow-e2e).  The commit body for the first PR in `deis/workflow-e2e` would look like:
+
+```
+feat(foo_test): add e2e test for feature foo
+
+[skip e2e] test for controller#42
+```
+Adding `[skip e2e]` forgoes the e2e tests on this commit. This and any other required PRs aside from the final PR should be submitted first, so that their respective build and image push jobs run.
+
+Lastly, the final PR in `deis/controller` should be created with the required PR number(s) listed, in the form of `[Rr]equires <repoName>#<pullRequestNumber>`, for use by the downstream e2e run.
+
+```
+feat(foo): add feature foo
+
+Requires workflow-e2e#42
+```
 
 ## Code Standards
 
@@ -90,6 +110,8 @@ Any code change - other than a simple typo fix or one-line documentation change 
 No pull requests can be merged until at least one core maintainer signs off with an LGTM. The other LGTM can come from either a core maintainer or contributing maintainer.
 
 If the PR is from a Deis maintainer, then he or she should be the one to close it. This keeps the commit stream clean and gives the maintainer the benefit of revisiting the PR before deciding whether or not to merge the changes.
+
+An exception to this is when an errant commit needs to be reverted urgently. If necessary, a PR that only reverts a previous commit can be merged without waiting for LGTM approval.
 
 [go]: http://golang.org/
 [glide]: https://github.com/Masterminds/glide
