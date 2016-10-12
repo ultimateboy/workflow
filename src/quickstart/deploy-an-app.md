@@ -106,9 +106,9 @@ Congratulations! You have deployed, configured, and scaled your first applicatio
 ## Going Further
 There is a lot more you can do with Deis Workflow, play around with the CLI:
 
-> **IMPORTANT:** In order to have permission to push an app you must add a SSH key
-> to your user on the Deis Workflow. For more information, please check
-> [Users and SSH Keys](../users/ssh-keys/) and [Troubleshooting Workflow](../troubleshooting/) sections out.
+!!! important
+    In order to have permission to push an app you must add a SSH key to your user on the Deis Workflow.
+    For more information, please check [Users and SSH Keys](../users/ssh-keys/) and [Troubleshooting Workflow](../troubleshooting/).
 
 * Roll back to a previous release with `deis rollback -a proper-barbecue`
 * See application logs with `deis logs -a proper-barbecue`

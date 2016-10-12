@@ -87,8 +87,9 @@ For Linux, use this instead:
 
     $ sudo ln -fs $PWD/platforms/linux/amd64/kubectl /usr/local/bin/kubectl
 
-> **NOTE:** If you are using any other architecture, you can look at the
-> `platforms/<os>/<arch>` tree to see all the available binaries
+!!! note
+    If you are using any other architecture, you can look at the `platforms/<os>/<arch>`
+    tree to see all the available binaries
 
 ## Boot Your First Cluster
 
