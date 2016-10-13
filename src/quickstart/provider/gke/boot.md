@@ -48,7 +48,7 @@ Google maintains a number of [quickstart guides](https://cloud.google.com/sdk/do
 
 Once you have installed the CLI tooling set your default project and list your container clusters:
 
-```
+```shell
 $ gcloud projects list
 PROJECT_ID             NAME               PROJECT_NUMBER
 ascendant-yeti-130419  My First Cluster   614974141267
@@ -56,24 +56,24 @@ ascendant-yeti-130419  My First Cluster   614974141267
 
 Set your default project:
 
-```
+```shell
 $ gcloud config set project ascendant-yeti-130419
 ```
 
 Then list your container clusters:
-```
+```shell
 $ gcloud container clusters list
 NAME       ZONE           MASTER_VERSION  MASTER_IP        MACHINE_TYPE   NODE_VERSION  NUM_NODES  STATUS
 cluster-1  us-central1-b  1.4.0           104.154.234.246  n1-standard-2  1.4.0 *       2          RUNNING
 ```
 
 If you haven't configured your default zone, make sure it matches the ZONE for your cluster:
-```
+```shell
 $ gcloud config set compute/zone us-central1-b
 ```
 
 Now you may fetch Kubernetes credentials:
-```
+```shell
 $ gcloud container clusters get-credentials cluster-1
 Fetching cluster endpoint and auth data.
 kubeconfig entry generated for cluster-1.
@@ -81,7 +81,7 @@ kubeconfig entry generated for cluster-1.
 
 Your local `kubectl` utility should now be pointed at your new container cluster. You can verify your crednentials and local configuration by running:
 
-```
+```shell
 $ kubectl cluster-info
 Kubernetes master is running at https://104.154.234.246
 GLBCDefaultBackend is running at https://104.154.234.246/api/v1/proxy/namespaces/kube-system/services/default-http-backend

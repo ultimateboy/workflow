@@ -9,7 +9,7 @@ the known commands administrators would use with `deisctl` and translates their 
 
 ## Listing all Components
 
-```
+```shell
 # Deis v1
 $ deisctl list
 
@@ -19,7 +19,7 @@ $ kubectl --namespace=deis get deployments
 
 ## Listing all Nodes
 
-```
+```shell
 # Deis v1
 $ fleetctl list-machines
 
@@ -29,7 +29,7 @@ $ kubectl get nodes
 
 ## Custom Configuration
 
-```
+```shell
 # Deis v1
 $ deisctl config controller set registrationMode=admin_only
 
@@ -39,7 +39,7 @@ $ kubectl --namespace=deis patch deployment deis-controller -p '{"spec":{"contai
 
 ## View Component Configuration
 
-```
+```shell
 # Deis v1
 $ deisctl config router get bodySize
 
@@ -49,7 +49,7 @@ $ kubectl --namespace=deis get deployment deis-router -o yaml
 
 ## Running a Command Within a Component
 
-```
+```shell
 # Deis v1
 $ deisctl dock router@1
 
@@ -61,7 +61,7 @@ $ kubectl --namespace=deis exec -it deis-router-1930478716-iz6oq bash
 
 ## Follow the Logs for a Component
 
-```
+```shell
 # Deis v1
 $ fleetctl journal -f deis-builder
 

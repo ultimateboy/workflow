@@ -13,7 +13,7 @@ tune these settings.
 For example, to allow only administrators to register new accounts in the controller,
 edit `tpl/deis-controller-deployment.yaml` and add the following under the `env` section:
 
-```
+```yaml
 env:
   - name: REGISTRATION_MODE
     value: "admin_only"
@@ -27,7 +27,7 @@ in the section and set them to the appropriate values.
 
 Below is an example of how the builder section of `tpl/generate_params.toml` might look with CPU and memory limits set:
 
-```
+```toml
 [builder]
 org = "deisci"
 pullPolicy = "Always"

@@ -22,7 +22,7 @@ DNS for any applications using a "custom domain" (a fully-qualified domain name 
 
 Although it is dependent upon your distribution of Kubernetes and your underlying infrastructure, in many cases, the IP(s) or existing fully-qualified domain name of a load balancer can be determined directly using the `kubectl` tool:
 
-```
+```shell
 $ kubectl --namespace=deis describe service deis-router | grep "LoadBalancer Ingress"
 LoadBalancer Ingress:	a493e4e58ea0511e5bb390686bc85da3-1558404688.us-west-2.elb.amazonaws.com
 ```
@@ -39,7 +39,7 @@ In general, for any IP, `a.b.c.d`, the fully-qualified domain name `any-subdomai
 
 To begin, find the node(s) hosting router instances using `kubectl`:
 
-```
+```shell
 $ kubectl --namespace=deis describe pod deis-router | grep Node
 Node:       ip-10-0-0-199.us-west-2.compute.internal/10.0.0.199
 Node:       ip-10-0-0-198.us-west-2.compute.internal/10.0.0.198
@@ -49,7 +49,7 @@ The command will display information for every router pod.  For each, a node nam
 
 You can list the IP addresses of a node using `kubectl`:
 
-```
+```shell
 $ kubectl describe node ip-10-0-0-199.us-west-2.compute.internal
 # ...
 Addresses:	10.0.0.199,10.0.0.199,54.218.85.175
@@ -108,20 +108,20 @@ Note: If you ever have to re-create your deis cluster, simply go back to step 6.
 To test that traffic reaches its intended destination, a request can be
 sent to the Deis controller like so (do not forget the trailing slash!):
 
-```
-curl http://deis.example.com/v2/
+```shell
+$ curl http://deis.example.com/v2/
 ```
 
 Or:
 
-```
-curl http://deis.54.218.85.175.xip.io/v2/
+```shell
+$ curl http://deis.54.218.85.175.xip.io/v2/
 ```
 
 
 Since such requests require authentication, a response such as the following should be considered an indicator of success:
 
-```
+```json
 {"detail":"Authentication credentials were not provided."}
 ```
 

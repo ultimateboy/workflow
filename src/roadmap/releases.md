@@ -275,7 +275,7 @@ Now that the `$WORKFLOW_RELEASE` version of Workflow CLI has been vetted, we can
 Kick off https://ci.deis.io/job/workflow-cli-build-stable/ with the `TAG` build parameter of `$WORKFLOW_RELEASE`
 and then verify `stable` artifacts are available and appropriately updated after the job completes:
 
-```
+```shell
 $ curl -sSL http://deis.io/deis-cli/install-v2.sh | bash
 $ ./deis version
 # (Should show $WORKFLOW_RELEASE)

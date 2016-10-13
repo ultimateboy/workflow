@@ -11,7 +11,7 @@ Deis requires a wildcard DNS record to dynamically map app names to the router. 
 
 Use the controller url to register a user in the cluster.
 
-```
+```shell
 $ deis register http://deis.104.197.125.75.nip.io
 username: admin
 password:
@@ -35,7 +35,7 @@ Run `deis create` to create a new application on Deis Workflow. If you do not
 specify a name for your application, Workflow automatically generates a
 friendly (and sometimes funny) name.
 
-```
+```shell
 $ deis create --no-remote
 Creating Application... done, created proper-barbecue
 If you want to add a git remote for this app later, use `deis git:remote -a proper-barbecue`
@@ -47,7 +47,7 @@ routed to your application pods by the edge router.
 
 Let's use the CLI to tell the platform to deploy an application and then use curl to send a request to the app:
 
-```
+```shell
 $ deis pull deis/example-go -a proper-barbecue
 Creating build... done
 $ curl http://proper-barbecue.104.197.125.75.nip.io
@@ -68,7 +68,7 @@ Next, let's change some configuration using the CLI. Our example app is built
 to read configuration from the environment. By using `deis config:set` we can
 change how the application behaves:
 
-```
+```shell
 $ deis config:set POWERED_BY="Docker Images + Kubernetes" -a proper-barbecue
 Creating config... done
 
@@ -81,7 +81,7 @@ Kubernetes to provide a zero-downtime rolling deploy to the new release!
 
 Validate that our configuration change has worked:
 
-```
+```shell
 $ curl http://proper-barbecue.104.197.125.75.nip.io
 Powered by Docker Images + Kubernetes
 ```
@@ -91,7 +91,7 @@ Powered by Docker Images + Kubernetes
 Last, let's scale our application by adding more application processes. Using the CLI you can easily add and remove
 additional processes to service requests:
 
-```
+```shell
 $ deis scale cmd=2 -a proper-barbecue
 Scaling processes... but first, coffee!
 done in 36s

@@ -8,7 +8,7 @@ applications that are deployed and managed by Deis Workflow.
 By describing the `deis-router` service, you can see what IP address has been
 allocated by Google Cloud for your Deis Workflow cluster:
 
-```
+```shell
 $ kubectl --namespace=deis describe svc deis-router | grep LoadBalancer
 Type:                   LoadBalancer
 LoadBalancer Ingress:   104.197.125.75
@@ -26,7 +26,7 @@ the ip address for your load balancer and adding `nip.io`. For our example
 above, the address would be: `104.197.125.75.nip.io`.
 
 Nip answers with the ip address no matter the hostname:
-```
+```shell
 $ host 104.197.125.75.nip.io
 104.197.125.75.nip.io has address 104.197.125.75
 $ host something-random.104.197.125.75.nip.io
@@ -35,7 +35,7 @@ something-random.104.197.125.75.nip.io has address 104.197.125.75
 
 By default, any HTTP traffic for the hostname `deis` will be sent to the Workflow API service. To test that everything is connected properly you may validate connectivity using `curl`:
 
-```
+```shell
 $ curl http://deis.104.197.125.75.nip.io/v2/ && echo
 {"detail":"Authentication credentials were not provided."}
 ```

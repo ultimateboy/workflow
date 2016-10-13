@@ -10,7 +10,7 @@ increase monotonically.
 
 You can see a record of changes to your application using `deis releases`:
 
-```
+```shell
 $ deis releases
 === peachy-waxworks Releases
 v4      3 minutes ago                     gabrtv deployed d3ccc05
@@ -32,7 +32,7 @@ In this example, the application is currently running release v4. Using `deis ro
 build and configuration that was used for release v2. This creates a new release named v5 whose contents are the source
 and configuration from release v2:
 
-```
+```shell
 $ deis releases
 === folksy-offshoot Releases
 v4      4 minutes ago                     gabrtv deployed d3ccc05
@@ -75,7 +75,7 @@ Use `deis run` to execute commands on the deployed application.
 
 Use `deis perms:create` to allow another Deis user to collaborate on your application.
 
-```
+```shell
 $ deis perms:create otheruser
 Adding otheruser to peachy-waxworks collaborators... done
 ```
@@ -88,7 +88,7 @@ Use `deis perms` to see who an application is currently shared with, and `deis p
 When working with an application that has been shared with you, clone the original repository and add Deis' git remote
 entry before attempting to `git push` any changes to Deis.
 
-```
+```shell
 $ git clone https://github.com/deis/example-java-jetty.git
 Cloning into 'example-java-jetty'... done
 $ cd example-java-jetty

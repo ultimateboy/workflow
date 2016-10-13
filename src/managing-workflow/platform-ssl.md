@@ -29,7 +29,7 @@ before base64 encoding the combined certificates.
 
 Prepare your certificate and key files by encoding them in base64:
 
-```
+```shell
 $ cat certificate-file.crt
 -----BEGIN CERTIFICATE-----
 / * your SSL certificate here */
@@ -49,15 +49,17 @@ LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQovKiB5b3VyIHVuZW5jcnlwdGVkIHByaXZhdGUg
 
 Open your favorite text editor and create the Kubernetes manifest:
 
-```
+```shell
 $ $EDITOR deis-router-platform-cert.yaml
 ```
 
 The format of the Secret manifest should match the below example. Make sure you paste the appropriate values for `cert`
 and `key` from the above examples:
 
-```
+```shell
 $ cat deis-router-platform-cert.yaml
+```
+```yaml
 apiVersion: v1
 kind: Secret
 metadata:

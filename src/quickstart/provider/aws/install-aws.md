@@ -4,7 +4,7 @@
 
 First check that the `helmc` command is available and the version is 0.8 or newer.
 
-```
+```shell
 $ helmc --version
 helmc version 0.8.1+a9c55cf
 ```
@@ -12,7 +12,7 @@ helmc version 0.8.1+a9c55cf
 Ensure the `kubectl` client is installed and can connect to your Kubernetes cluster. `helmc` will
 use it to communicate. You can test that it is working properly by running:
 
-```
+```shell
 $ helmc target
 Kubernetes master is running at https://52.9.206.49
 Elasticsearch is running at https://52.9.206.49/api/v1/proxy/namespaces/kube-system/services/elasticsearch-logging
@@ -33,7 +33,7 @@ need to install Deis onto your Kubernetes cluster, with a single `helmc install`
 
 Run the following command to add this repository to Helm Classic:
 
-```
+```shell
 $ helmc repo add deis https://github.com/deis/charts
 ```
 
@@ -41,7 +41,7 @@ $ helmc repo add deis https://github.com/deis/charts
 
 Now that you have Helm Classic installed and have added the Deis Chart Repository, install Workflow by running:
 
-```
+```shell
 $ helmc fetch deis/workflow-v2.7.0            # fetches the chart into a
                                               # local workspace
 $ helmc generate -x manifests workflow-v2.7.0 # generates various secrets
@@ -53,12 +53,12 @@ Helm Classic will install a variety of Kubernetes resources in the `deis` namesp
 You'll need to wait for the pods that it launched to be ready. Monitor their status
 by running:
 
-```
+```shell
 $ kubectl --namespace=deis get pods
 ```
 
 If you would like `kubectl` to automatically update as the pod states change, run (type Ctrl-C to stop the watch):
-```
+```shell
 $ kubectl --namespace=deis get pods -w
 ```
 
@@ -67,7 +67,7 @@ installation: if a component's dependencies are not yet available, that componen
 automatically restart it.
 
 Here, you can see that controller, builder and registry all took a few loops before there were able to start:
-```
+```shell
 $ kubectl --namespace=deis get pods
 NAME                          READY     STATUS    RESTARTS   AGE
 deis-builder-hy3xv            1/1       Running   5          5m
@@ -97,20 +97,20 @@ and managed by Deis Workflow.
 By describing the `deis-router` service, you can see what IP hostname has been allocated by AWS for your Deis Workflow
 cluster:
 
-```
+```shell
 $ kubectl --namespace=deis describe svc deis-router | egrep LoadBalancer
 Type:                   LoadBalancer
 LoadBalancer Ingress:   abce0d48217d311e69a470643b4d9062-2074277678.us-west-1.elb.amazonaws.com
 ```
 
 The AWS name for the ELB is the first part of hostname, before the `-`. List all of your ELBs by name to confirm:
-```
+```shell
 $ aws elb describe-load-balancers --query 'LoadBalancerDescriptions[*].LoadBalancerName'
 abce0d48217d311e69a470643b4d9062
 ```
 
 Set the connection timeout to 1200 seconds, make sure you use your load balancer name:
-```
+```shell
 $ aws elb modify-load-balancer-attributes \
         --load-balancer-name abce0d48217d311e69a470643b4d9062 \
         --load-balancer-attributes "{\"ConnectionSettings\":{\"IdleTimeout\":1200}}"

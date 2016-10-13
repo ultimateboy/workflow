@@ -21,7 +21,7 @@ Fortunately, most modern applications feature a stateless application tier that 
 Before deploying an application, users must first authenticate against the Deis [Controller][]
 using the URL supplied by their Deis administrator.
 
-```
+```shell
 $ deis login http://deis.example.com
 username: deis
 password:

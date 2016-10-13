@@ -10,7 +10,7 @@ For **Buildpack** based application deploys via `git push`, Deis Workflow identi
 
 - Run `deis keys:add` to upload your SSH key to Deis Workflow.
 
-```
+```shell
 $ deis keys:add ~/.ssh/id_deis.pub
 Uploading id_deis.pub to deis... done
 ```
@@ -134,19 +134,22 @@ The builder will run these commands before and after the build process, respecti
 To pull code from private repositories, set the `SSH_KEY` environment variable to a private key
 which has access. Use either the path of a private key file or the raw key material:
 
-    $ deis config:set SSH_KEY=/home/user/.ssh/id_rsa
-    $ deis config:set SSH_KEY="""-----BEGIN RSA PRIVATE KEY-----
-    (...)
-    -----END RSA PRIVATE KEY-----"""
+```shell
+$ deis config:set SSH_KEY=/home/user/.ssh/id_rsa
+$ deis config:set SSH_KEY="""-----BEGIN RSA PRIVATE KEY-----
+(...)
+-----END RSA PRIVATE KEY-----"""
+```
 
 For example, to use a custom buildpack hosted at a private GitHub URL, ensure that an SSH public
 key exists in your [GitHub settings][]. Then set `SSH_KEY` to the corresponding SSH private key
 and set `BUILDPACK_URL` to the URL:
 
-    $ deis config:set SSH_KEY=/home/user/.ssh/github_id_rsa
-    $ deis config:set BUILDPACK_URL=git@github.com:user/private_buildpack.git
-    $ git push deis master
-
+```shell
+$ deis config:set SSH_KEY=/home/user/.ssh/github_id_rsa
+$ deis config:set BUILDPACK_URL=git@github.com:user/private_buildpack.git
+$ git push deis master
+```
 
 [pods]: http://kubernetes.io/v1.1/docs/user-guide/pods.html
 [controller]: ../understanding-workflow/components.md#controller

@@ -12,13 +12,15 @@ The first user created on a Workflow installation is automatically an administra
 Use `deis register` with the [Controller][] URL (supplied by your Deis administrator)
 to create a new account. After successful registration you will be logged in as the new user.
 
-    $ deis register http://deis.example.com
-    username: myuser
-    password:
-    password (confirm):
-    email: myuser@example.com
-    Registered myuser
-    Logged in as myuser
+```shell
+$ deis register http://deis.example.com
+username: myuser
+password:
+password (confirm):
+email: myuser@example.com
+Registered myuser
+Logged in as myuser
+```
 
 !!! important
     The first user to register with Deis Workflow automatically becomes an administrator. Additional users who register will be ordinary users.
@@ -27,24 +29,30 @@ to create a new account. After successful registration you will be logged in as 
 
 If you already have an account, use `deis login` to authenticate against the Deis Workflow API.
 
-    $ deis login http://deis.example.com
-    username: deis
-    password:
-    Logged in as deis
+```shell
+$ deis login http://deis.example.com
+username: deis
+password:
+Logged in as deis
+```
 
 ## Logout from Workflow
 
 Logout of an existing controller session using `deis logout`.
 
-    $ deis logout
-    Logged out as deis
+```shell
+$ deis logout
+Logged out as deis
+```
 
 ## Verify Your Session
 
 You can verify your client configuration by running `deis whoami`.
 
-    $ deis whoami
-    You are deis at http://deis.example.com
+```shell
+$ deis whoami
+You are deis at http://deis.example.com
+```
 
 !!! note
     Session and client configuration is stored in the `~/.deis/client.json` file.
@@ -74,14 +82,14 @@ Kubernetes will automatically deploy a new ReplicaSet and corresponding Pod with
 
 You can use the `deis perms` command to promote a user to an admin:
 
-```
+```shell
 $ deis perms:create john --admin
 Adding john to system administrators... done
 ```
 
 View current admins:
 
-```
+```shell
 $ deis perms:list --admin
 === Administrators
 admin
@@ -90,7 +98,7 @@ john
 
 Demote admins to normal users:
 
-```
+```shell
 $ deis perms:delete john --admin
 Removing john from system administrators... done
 ```
@@ -103,31 +111,38 @@ time that they sign up on the platform. If this token is compromised, it will ne
 
 A user can regenerate their own token like this:
 
-    $ deis auth:regenerate
+```shell
+$ deis auth:regenerate
+```
 
 An administrator can also regenerate the token of another user like this:
 
-    $ deis auth:regenerate -u test-user
+```shell
+$ deis auth:regenerate -u test-user
+```
 
 At this point, the user will no longer be able to authenticate against the controller with his auth token:
 
-    $ deis apps
-    401 UNAUTHORIZED
-    Detail:
-    Invalid token
+```shell
+$ deis apps
+401 UNAUTHORIZED
+Detail:
+Invalid token
+```
 
 They will need to log back in to use their new auth token.
 
 If there is a cluster wide security breach, an administrator can regenerate everybody's auth token like this:
 
-    $ deis auth:regenerate --all=true
-
+```shell
+$ deis auth:regenerate --all=true
+```
 
 ## Changing Account Password
 
 A user can change their own account's password like this:
 
-```
+```shell
 $ deis auth:passwd
 current password:
 new password:
@@ -136,7 +151,7 @@ new password (confirm):
 
 An administrator can change the password of another user's account like this:
 
-```
+```shell
 $ deis auth:passwd --username=<username>
 new password:
 new password (confirm):

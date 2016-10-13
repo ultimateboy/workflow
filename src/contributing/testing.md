@@ -18,25 +18,25 @@ The style checks, unit tests, and functional tests for each component can all be
 
 To execute style checks:
 
-```
+```shell
 $ make test-style
 ```
 
 To execute unit tests:
 
-```
+```shell
 $ make test-unit
 ```
 
 To execute functional tests:
 
-```
+```shell
 $ make test-functional
 ```
 
 To execute style checks, unit tests, and functional tests all in one shot:
 
-```
+```shell
 $ make test
 ```
 

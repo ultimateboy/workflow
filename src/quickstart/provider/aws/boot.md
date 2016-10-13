@@ -11,7 +11,7 @@ guide uses AWS EC2 to boot a Kubernetes cluster using the open source provisioni
 
 To verify that your CLI is configured properly, run `aws ec2 describe-regions`:
 
-```
+```shell
 $ aws ec2 describe-regions
 REGIONS	ec2.eu-west-1.amazonaws.com	eu-west-1
 REGIONS	ec2.ap-southeast-1.amazonaws.com	ap-southeast-1
@@ -29,7 +29,7 @@ REGIONS	ec2.us-west-2.amazonaws.com	us-west-2
 
 First, make a directory to hold the Kubernetes release files:
 
-```
+```shell
 $ mkdir my-first-cluster
 $ cd my-first-cluster
 ```
@@ -38,7 +38,7 @@ See [Kubernetes Versions](https://deis.com/docs/workflow/installing-workflow/sys
 
 This archive has everything that you need to launch Kubernetes. It's a fairly large archive, so it may take some time to download:
 
-```
+```shell
 $ curl -sSL https://storage.googleapis.com/kubernetes-release/release/v1.3.5/kubernetes.tar.gz -O
 $ tar -xvzf kubernetes.tar.gz
 $ cd kubernetes
@@ -53,25 +53,25 @@ each of these commands into your terminal application before calling `kube-up.sh
 
 Next, pick the AWS Availability Zone you would like to use. The boot script will create a new VPC in that region.
 
-```
-export KUBE_AWS_ZONE=us-west-1c
-export KUBERNETES_PROVIDER=aws
+```shell
+$ export KUBE_AWS_ZONE=us-west-1c
+$ export KUBERNETES_PROVIDER=aws
 ```
 
 For evaluation, we find that the t2 instance classes are a reasonable bang for the buck. Do note that the t2 class does
 track CPU credits. Performance of your evaluation cluster may be impacted when you exhaust the CPU credit limit. Select
 your instance sizes and worker count.
 
-```
-export MASTER_SIZE=t2.medium
-export NODE_SIZE=t2.large
-export NUM_NODES=2
-export NODE_ROOT_DISK_SIZE=100
+```shell
+$ export MASTER_SIZE=t2.medium
+$ export NODE_SIZE=t2.large
+$ export NUM_NODES=2
+$ export NODE_ROOT_DISK_SIZE=100
 ```
 
 Last, so you can easily identify instances in the AWS Console, specify an instance prefix:
-```
-export INSTANCE_PREFIX=first-k8s
+```shell
+$ export INSTANCE_PREFIX=first-k8s
 ```
 
 ## Boot Your First Cluster
@@ -80,7 +80,7 @@ We are now ready to boot our first Kubernetes cluster on AWS!
 
 Since this script does a **lot** of stuff, we'll break it into sections.
 
-```
+```shell
 $ ./cluster/kube-up.sh
 Creating a kubernetes on aws...
 ... Starting cluster in us-west-1c using provider aws
@@ -231,7 +231,7 @@ Installation successful!
 A few things to note! Your Kubernetes master is now up and running and we are ready to install Deis Workflow. If you
 need to access the Kubernetes master the default username is `admin` and the ssh key lives at `~/.ssh/kube_aws_rsa`.
 
-```
+```shell
 $ ssh -i ~/.ssh/kube_aws_rsa admin@52.9.206.49
 
 Welcome to Kubernetes v1.2.4!

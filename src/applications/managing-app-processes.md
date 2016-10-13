@@ -54,7 +54,7 @@ The syntax is defined as:
 This example Procfile specifies two types, `web` and `sleeper`. The `web` process launches a web server on port 5000 and
 a simple process which sleeps for 900 seconds and exits.
 
-```
+```shell
 $ cat Procfile
 web: bundle exec ruby web.rb -p ${PORT:-5000}
 sleeper: sleep 900
@@ -65,17 +65,16 @@ If you are using [remote Docker images][docker image], you may define process ty
 
 For example:
 
-```
+```shell
 $ deis pull deis/example-go:latest --procfile="cmd: /app/bin/boot"
 ```
 
 Or via a Procfile:
 
-```
+```shell
 $ cat Procfile
 cmd: /bin/boot
 sleeper: echo "sleeping"; sleep 900
-
 
 $ deis pull -a steely-mainsail deis/example-go
 Creating build... done
@@ -96,7 +95,7 @@ steely-mainsail-sleeper-3291896318-oq1jr up (v3)
 
 To remove a process type simply scale it to 0:
 
-```
+```shell
 $ deis scale sleeper=0 -a steely-mainsail
 Scaling processes... but first, coffee!
 done in 3s
@@ -110,7 +109,7 @@ steely-mainsail-cmd-3291896318-nyrim up (v3)
 Applications deployed on Deis Workflow scale out via the [process model][]. Use `deis scale` to control the number of
 [containers][container] that power your app.
 
-```
+```shell
 $ deis scale cmd=5 -a iciest-waggoner
 Scaling processes... but first, coffee!
 done in 3s
@@ -129,7 +128,7 @@ types see our documentation for [Managing App Processes](managing-app-processes.
 
 In this example, we are scaling the process type `web` to 5 but leaving the process type `background` with one worker.
 
-```
+```shell
 $ deis scale web=5
 Scaling processes... but first, coffee!
 done in 4s
@@ -153,7 +152,7 @@ client connections.
 
 For example, scaling from 5 processes to 3:
 
-```
+```shell
 $ deis scale web=3
 Scaling processes... but first, coffee!
 done in 1s
@@ -175,14 +174,14 @@ This feature is built on top of [Horizontal Pod Autoscaling][HPA] in Kubernetes 
 !!! note
 	This is an alpha feature. It is recommended to be on the latest Kubernetes when using this feature.
 
-```
+```shell
 $ deis autoscale:set web --min=3 --max=8 --cpu-percent=75
 Applying autoscale settings for process type web on scenic-icehouse... done
-
 ```
+
 And then review the scaling rule that was created for `web`
 
-```
+```shell
 $ deis autoscale:list
 === scenic-icehouse Autoscale
 
@@ -194,7 +193,7 @@ CPU: 75%
 
 Remove scaling rule
 
-```
+```shell
 $ deis autoscale:unset web
 Removing autoscale for process type web on scenic-icehouse... done
 ```
@@ -223,7 +222,7 @@ down the old process type and scale the new process type up.
 If you need to restart an application process, you may use `deis ps:restart`. Behind the scenes, Deis Workflow instructs
 Kubernetes to terminate the old process and launch a new one in its place.
 
-```
+```shell
 $ deis ps
 === scenic-icehouse Processes
 --- web:

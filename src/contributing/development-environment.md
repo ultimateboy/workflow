@@ -33,13 +33,13 @@ If your local workstation does not support the `linux/amd64` target environment,
 
 Homebrew users can just install with cross compiling support:
 
-```
+```shell
 $ brew install go --with-cc-common
 ```
 
 It is also straightforward to build Go from source:
 
-```
+```shell
 $ sudo su
 $ curl -sSL https://golang.org/dl/go1.5.src.tar.gz | tar -v -C /usr/local -xz
 $ cd /usr/local/go/src
@@ -56,7 +56,7 @@ Deis needs Docker for building images.  Docker utilizes a client/server architec
 
 Install Docker Machine according to the normal installation instructions, then use it to create a new VM:
 
-```
+```shell
 $ docker-machine create deis-docker \
     --driver=virtualbox \
     --virtualbox-disk-size=100000 \
@@ -70,7 +70,7 @@ This will create a new virtual machine named `deis-docker` that will take up as 
 
 Once the `deis-docker` machine exists, source its values into your environment so your docker client knows how to use the new machine. You may even choose to add this to your bash profile or similar.
 
-```
+```shell
 $ eval "$(docker-machine env docker-deis)"
 ```
 
@@ -85,7 +85,7 @@ Once the prerequisites have been met, we can begin to work with Deis components.
 
 Begin at Github by forking whichever Deis project you would like to contribute to, then clone that fork locally.  Since Deis is predominantly written in Go, the best place to put it is under `$GOPATH/src/github.com/deis/`.
 
-```
+```shell
 $ mkdir -p  $GOPATH/src/github.com/deis
 $ cd $GOPATH/src/github.com/deis
 $ git clone git@github.com:<username>/<component>.git
@@ -97,13 +97,13 @@ $ cd <component>
 
 If you are going to be issuing pull requests to the upstream repository from which you forked, we suggest configuring Git such that you can easily rebase your code to the upstream repository's master branch. There are various strategies for doing this, but the [most common](https://help.github.com/articles/fork-a-repo/) is to add an `upstream` remote:
 
-```
+```shell
 $ git remote add upstream https://github.com/deis/<component>.git
 ```
 
 For the sake of simplicity, you may want to point an environment variable to your Deis code - the directory containing one or more Deis components:
 
-```
+```shell
 $ export DEIS=$GOPATH/src/github.com/deis
 ```
 
@@ -113,7 +113,7 @@ Throughout the rest of this document, `$DEIS` refers to that location.
 
 A number of Deis contributors prefer to pull directly from `deis/<component>`, but push to `<username>/<component>`. If that workflow suits you better, you can set it up this way:
 
-```
+```shell
 $ git clone git@github.com:deis/<component>.git
 $ cd deis
 $ git config remote.origin.pushurl git@github.com:<username>/<component>.git
@@ -145,34 +145,34 @@ If your development cluster runs locally (in Vagrant, for instance), the most ef
 
 To facilitate this, most Deis components provide a make target to create such a registry:
 
-```
+```shell
 $ make dev-registry
 ```
 
 In a Linux environment, to begin using the registry:
 
-```
-export DEIS_REGISTRY=<IP of the host machine>:5000
+```shell
+$ export DEIS_REGISTRY=<IP of the host machine>:5000
 ```
 
 In non-Linux environments:
 
-```
-export DEIS_REGISTRY=<IP of the docker-deis Docker Machine VM>:5000/
+```shell
+$ export DEIS_REGISTRY=<IP of the docker-deis Docker Machine VM>:5000/
 ```
 
 If your development cluster runs on a cloud provider such as Google Container Engine, a local registry such as the one above will not be accessible to your Kubernetes nodes.  In such cases, a public registry such as [DockerHub][dh] or [quay.io][quay] will suffice.
 
 To use DockerHub for this purpose, for instance:
 
-```
+```shell
 $ export DEIS_REGISTRY=""
 $ export IMAGE_PREFIX=<your DockerHub username>
 ```
 
 To use quay.io:
 
-```
+```shell
 $ export DEIS_REGISTRY=quay.io/
 $ export IMAGE_PREFIX=<your quay.io username>
 ```
@@ -192,7 +192,7 @@ In the general case, this workflow looks like this:
 
 This can be shortened to a one-liner using just the `deploy` target:
 
-```
+```shell
 $ make deploy
 ```
 
@@ -202,7 +202,7 @@ Once your customized Deis component has been deployed, here are some helpful com
 
 ### See All Deis Pods
 
-```
+```shell
 $ kubectl --namespace=deis get pods
 ```
 
@@ -210,13 +210,13 @@ $ kubectl --namespace=deis get pods
 
 This is often useful for troubleshooting pods that are in pending or crashed states:
 
-```
+```shell
 $ kubectl --namespace=deis describe -f <pod name>
 ```
 
 ### Tail Logs
 
-```
+```shell
 $ kubectl --namespace=deis logs -f <pod name>
 ```
 
@@ -224,7 +224,7 @@ $ kubectl --namespace=deis logs -f <pod name>
 
 Specific to [deis/controller][controller]
 
-```
+```shell
 $ kubectl --namespace=deis exec -it <pod name> -- python manage.py shell
 ```
 

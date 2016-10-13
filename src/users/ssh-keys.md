@@ -8,7 +8,7 @@ keys. SSH keys are pushed to the platform and must be unique to each user. Users
 If you do not already have an SSH key or would like to create a new key for Deis Workflow, generate a new key using
 `ssh-keygen`:
 
-```
+```shell
 $ ssh-keygen -f ~/.ssh/id_deis -t rsa
 Generating public/private rsa key pair.
 Enter passphrase (empty for no passphrase):
@@ -36,14 +36,14 @@ The key's randomart image is:
 By publishing the **public** half of your SSH key to Deis Workflow the component responsible for receiving `git push`
 will be able to authenticate the user and ensure that they have access to the destination application.
 
-```
+```shell
 $ deis keys:add ~/.ssh/id_deis.pub
 Uploading id_deis.pub to deis... done
 ```
 
 You can always view the keys associated with your user as well:
 
-```
+```shell
 $ deis keys:list
 === admin Keys
 admin@plinth-23437.local ssh-rsa AAAAB3Nz...3437.local
@@ -51,7 +51,7 @@ admin@subgenius.local ssh-rsa AAAAB3Nz...nius.local
 ```
 
 Remove keys by their name:
-```
+```shell
 $ deis keys:remove admin@plinth-23437.local
 Removing admin@plinth-23437.local SSH Key... don
 ```

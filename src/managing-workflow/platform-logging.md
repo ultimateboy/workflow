@@ -56,7 +56,7 @@ By default the Fluentd pod can be configured to talk to numerous syslog endpoint
 
 Configuring Fluentd to talk to multiple syslog endpoints means adding the following stanzas to the [Fluentd daemonset manifest](https://github.com/deis/charts/blob/master/workflow-v2.7.0/tpl/deis-logger-fluentd-daemon.yaml) -
 
-```
+```yaml
 env:
 - name: "SYSLOG_HOST_1"
   value: "my.syslog.host"
@@ -71,7 +71,7 @@ env:
 
 If you only need to talk to 1 Syslog endpoint you can use the following configuration within your chart:
 
-```
+```yaml
 env:
 - name: "SYSLOG_HOST"
   value: "my.syslog.host"

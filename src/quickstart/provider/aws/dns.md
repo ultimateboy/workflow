@@ -8,7 +8,7 @@ to the [Builder][].
 By describing the `deis-router` service, you can see what hostname allocated by AWS for your Deis
 Workflow cluster:
 
-```
+```shell
 $ kubectl --namespace=deis describe svc deis-router | egrep LoadBalancer
 Type:                   LoadBalancer
 LoadBalancer Ingress:   abce0d48217d311e69a470643b4d9062-2074277678.us-west-1.elb.amazonaws.com
@@ -62,7 +62,7 @@ update DNS!
 
 First, pick one of the IP addresses allocated to your ELB:
 
-```
+```shell
 $ host abce0d48217d311e69a470643b4d9062-2074277678.us-west-1.elb.amazonaws.com
 abce0d48217d311e69a470643b4d9062-2074277678.us-west-1.elb.amazonaws.com has address 52.8.166.233
 abce0d48217d311e69a470643b4d9062-2074277678.us-west-1.elb.amazonaws.com has address 54.193.5.73
@@ -76,7 +76,7 @@ above, the address would be: `52.8.166.233.nip.io`.
 
 Nip answers with the ip address no matter the hostname:
 
-```
+```shell
 $ host 52.8.166.233.nip.io
 52.8.166.233.nip.io has address 52.8.166.233
 $ host something-random.52.8.166.233.nip.io
@@ -86,7 +86,7 @@ something-random.52.8.166.233.nip.io has address 52.8.166.233
 By default, any HTTP traffic for the hostname `deis` will be sent to the Workflow API service. To
 test that everything is connected properly you may validate connectivity using `curl`:
 
-```
+```shell
 $ curl http://deis.52.8.166.233.nip.io/v2/ && echo
 {"detail":"Authentication credentials were not provided."}
 ```

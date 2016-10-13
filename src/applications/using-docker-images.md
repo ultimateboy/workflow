@@ -8,14 +8,18 @@ This is useful for integrating Deis into Docker-based CI/CD pipelines.
 
 Start by cloning an example application:
 
-    $ git clone https://github.com/deis/example-dockerfile-http.git
-    $ cd example-dockerfile-http
+```shell
+$ git clone https://github.com/deis/example-dockerfile-http.git
+$ cd example-dockerfile-http
+```
 
 Next use your local `docker` client to build the image and push
 it to [DockerHub][].
 
-    $ docker build -t <username>/example-dockerfile-http .
-    $ docker push <username>/example-dockerfile-http
+```shell
+$ docker build -t <username>/example-dockerfile-http .
+$ docker push <username>/example-dockerfile-http
+```
 
 
 ### Docker Image Requirements
@@ -34,9 +38,11 @@ In order to deploy Docker images, they must conform to the following requirement
 
 Use `deis create` to create an application on the [controller][].
 
-    $ mkdir -p /tmp/example-dockerfile-http && cd /tmp/example-dockerfile-http
-    $ deis create example-dockerfile-http --no-remote
-    Creating application... done, created example-dockerfile-http
+```shell
+$ mkdir -p /tmp/example-dockerfile-http && cd /tmp/example-dockerfile-http
+$ deis create example-dockerfile-http --no-remote
+Creating application... done, created example-dockerfile-http
+```
 
 !!! note
     For all commands except for `deis create`, the `deis` client uses the name of the current directory
@@ -48,11 +54,15 @@ Use `deis create` to create an application on the [controller][].
 Use `deis pull` to deploy your application from [DockerHub][] or
 a public registry.
 
-    $ deis pull <username>/example-dockerfile-http:latest
-    Creating build...  done, v2
+```shell
+$ deis pull <username>/example-dockerfile-http:latest
+Creating build...  done, v2
+```
 
-    $ curl -s http://example-dockerfile-http.local3.deisapp.com
-    Powered by Deis
+```shell
+$ curl -s http://example-dockerfile-http.local3.deisapp.com
+Powered by Deis
+```
 
 Because you are deploying a Docker image, the `cmd` process type is automatically scaled to 1 on first deploy.
 
@@ -76,8 +86,8 @@ When using a [GCR.io Long Lived Token][], the JSON blob will have to be compacte
 tool like [jq][] and then used in the password field in `deis registry:set`. For the username, use
 `_json_key`. For example:
 
-```
-deis registry:set username=_json_key password="$(cat google_cloud_cred.json | jq -c .)"
+```shell
+$ deis registry:set username=_json_key password="$(cat google_cloud_cred.json | jq -c .)"
 ```
 
 When using a private registry the docker images are no longer pulled into the Deis Internal Registry via

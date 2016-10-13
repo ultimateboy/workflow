@@ -18,13 +18,13 @@ If you need access to the *actual* client's IP address in your application, for 
 
 Enable PROXY protocol for the `deis-router` deployment:
 
-```
+```shell
 $ kubectl --namespace=deis annotate deployment/deis-router router.deis.io/nginx.useProxyProtocol=true
 ```
 
 Enable PROXY protocol on the ELB load balancer for the `deis-router` service:
 
-```
+```shell
 $ kubectl --namespace=deis annotate service/deis-router service.beta.kubernetes.io/aws-load-balancer-proxy-protocol='*'
 ```
 
@@ -40,7 +40,7 @@ If using a Kubernetes distribution or underlying infrastructure that does not su
 Begin by determining the "node ports" for the `deis-router` service:
 
 
-```
+```shell
 $ kubectl --namespace=deis describe service deis-router
 ```
 

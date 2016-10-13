@@ -17,7 +17,7 @@ Kubernetes cluster on your local machine.
 
 First, make a directory to hold the Kubernetes release files:
 
-```
+```shell
 $ mkdir my-first-cluster
 $ cd my-first-cluster
 ```
@@ -26,7 +26,7 @@ See [Kubernetes Versions](https://deis.com/docs/workflow/installing-workflow/sys
 
 This archive has everything that you need to launch Kubernetes. It's a fairly large archive, so it may take some time to download:
 
-```
+```shell
 $ curl -sSL https://storage.googleapis.com/kubernetes-release/release/v1.3.5/kubernetes.tar.gz -O
 $ tar -xvzf kubernetes.tar.gz
 $ cd kubernetes
@@ -41,21 +41,21 @@ each of these commands into your terminal application before calling `kube-up.sh
 
 First, use Vagrant as the provider:
 
-```
+```shell
 $ export KUBERNETES_PROVIDER=vagrant
 ```
 
 For evaluation, we find that the worker nodes need a bit more memory than the default 1GB. We will allocate 1.5GB for
 the master node and 4GB for the worker node:
 
-```
-export KUBERNETES_MASTER_MEMORY=1536
-export KUBERNETES_NODE_MEMORY=4096
+```shell
+$ export KUBERNETES_MASTER_MEMORY=1536
+$ export KUBERNETES_NODE_MEMORY=4096
 ```
 
 Double check the configured environment variables:
 
-```
+```shell
 $ env | grep KUBE
 KUBE_ENABLE_INSECURE_REGISTRY=true
 KUBERNETES_PROVIDER=vagrant
@@ -69,8 +69,8 @@ We are now ready to boot our first Kubernetes cluster using Vagrant!
 
 Since this script does a **lot** of stuff, we'll break it into sections.
 
-```
-kubernetes $ ./cluster/kube-up.sh
+```shell
+$ ./cluster/kube-up.sh
 ... Starting cluster using provider: vagrant
 ... calling verify-prereqs
 ... calling kube-up

@@ -13,7 +13,7 @@ Deis Workflow, follow the [quickstart guide](../quickstart/index.md) for assista
 
 Check that the `helmc` command is available and the version is 0.8 or newer.
 
-```
+```shell
 $ helmc --version
 helmc version 0.8.1+a9c55cf
 ```
@@ -23,7 +23,7 @@ with the Kubernetes cluster.
 
 `helmc` can be verified it is working properly by running:
 
-```
+```shell
 $ helmc target
 Kubernetes master is running at https://52.9.206.49
 Elasticsearch is running at https://52.9.206.49/api/v1/proxy/namespaces/kube-system/services/elasticsearch-logging
@@ -59,7 +59,7 @@ a Kubernetes cluster, with a single `helmc install` command.
 
 Add this repository to Helm Classic:
 
-```
+```shell
 $ helmc repo add deis https://github.com/deis/charts
 ```
 
@@ -67,7 +67,7 @@ $ helmc repo add deis https://github.com/deis/charts
 
 Now that Helm Classic is installed and the Deis Chart Repository has been added, install Workflow by running:
 
-```
+```shell
 $ helmc fetch deis/workflow-v2.7.0            # fetches the chart into a
                                               # local workspace
 $ helmc generate -x manifests workflow-v2.7.0 # generates various secrets
@@ -78,13 +78,13 @@ $ helmc install workflow-v2.7.0               # injects resources into
 Helm Classic will install a variety of Kubernetes resources in the `deis` namespace.
 Wait for the pods that Helm Classic launched to be ready. Monitor their status by running:
 
-```
+```shell
 $ kubectl --namespace=deis get pods
 ```
 
 If it's preferred to have `kubectl` automatically update as the pod states change, run (type Ctrl-C to stop the watch):
 
-```
+```shell
 $ kubectl --namespace=deis get pods -w
 ```
 
@@ -94,7 +94,7 @@ automatically restart it.
 
 Here, it can be seen that the controller, builder and registry all took a few loops before they were able to start:
 
-```
+```shell
 $ kubectl --namespace=deis get pods
 NAME                          READY     STATUS    RESTARTS   AGE
 deis-builder-hy3xv            1/1       Running   5          5m

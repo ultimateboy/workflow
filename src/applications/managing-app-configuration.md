@@ -109,7 +109,7 @@ the socket connection on the Container.
 Health checks can be configured on a per-proctype basis for each application using `deis healthchecks:set`. If no type is mentioned then the health checks are applied to default proc types, web or cmd, whichever is present. To
 configure a `httpGet` liveness probe:
 
-```
+```shell
 $ deis healthchecks:set liveness httpGet 80 --type cmd
 === peachy-waxworks Healthchecks
 
@@ -133,7 +133,7 @@ No readiness probe configured.
 If the application relies on certain headers being set (such as the `Host` header) or a specific
 URL path relative to the root, you can also send specific HTTP headers:
 
-```
+```shell
 $ deis healthchecks:set liveness httpGet 80 \
     --path /welcome/index.html \
     --header "X-Client-Version=v1.0"
@@ -158,7 +158,7 @@ No readiness probe configured.
 
 To configure an `exec` readiness probe:
 
-```
+```shell
 $ deis healthchecks:set readiness exec -- /bin/echo -n hello --type cmd
 === peachy-waxworks Healthchecks
 
@@ -181,7 +181,7 @@ TCP Socket Probe: N/A
 
 You can overwrite a probe by running `deis healthchecks:set` again:
 
-```
+```shell
 $ deis healthchecks:set readiness httpGet 80 --type cmd
 === peachy-waxworks Healthchecks
 

@@ -38,7 +38,7 @@ See the Helm Classic documentation for more detail about [keeper manifests].
 To verify that the deis namespace and all the deis-* services are marked as "keepers," run a
 command like this one for each component:
 
-```
+```shell
 $ kubectl --namespace=deis get service deis-router \
 	--output=go-template='{{ index .metadata.annotations "helm-keep" | println }}'
 true
@@ -46,14 +46,14 @@ true
 
 Manifests that are annotated correctly should return the value "true". To add a missing annotation, use `kubectl annotate`:
 
-```
+```shell
 $ kubectl --namespace=deis annotate namespace deis helm-keep=true
 namespace "deis" annotated
 ```
 
 Exporting environment variables for the previous and latest versions will help reduce confusion later on:
 
-```
+```shell
 $ export PREVIOUS_WORKFLOW_RELEASE=v2.6.0
 $ export DESIRED_WORKFLOW_RELEASE=v2.7.0
 ```
@@ -63,14 +63,14 @@ $ export DESIRED_WORKFLOW_RELEASE=v2.7.0
 Workflow charts are always published with a version number intact. The command `helmc update` updates the local chart
 repository to the latest set of releases.
 
-```
+```shell
 # update the charts repo
 $ helmc update
 ```
 
 Fetching the new chart copies the chart from the chart cache into the helmc workspace for customization.
 
-```
+```shell
 # fetch new chart
 $ helmc fetch deis/workflow-${DESIRED_WORKFLOW_RELEASE}
 ```
@@ -81,7 +81,7 @@ The first time Workflow is installed, Helm automatically generates secrets for t
 When upgrading, take care to use credentials from the running Workflow installation. The following commands export the
 secrets to the local workstation. They will be copied into place in a later step.
 
-```
+```shell
 # fetch the current database credentials to the local workstation
 $ kubectl --namespace=deis get secret database-creds -o yaml > ~/active-deis-database-secret-creds.yaml
 
@@ -94,12 +94,12 @@ $ kubectl --namespace=deis get secret builder-ssh-private-keys -o yaml > ~/activ
 Before generating the manifests for the newest release, operators should update the new `generate_params.toml` to match
 configuration from the **previous release**.
 
-```
+```shell
 # update your off-cluster storage configuration
 $ $EDITOR $(helmc home)/workspace/charts/workflow-${DESIRED_WORKFLOW_RELEASE}/tpl/generate_params.toml
 ```
 
-```
+```shell
 # generate templates for the new release
 $ helmc generate -x manifests workflow-${DESIRED_WORKFLOW_RELEASE}
 ```
@@ -108,7 +108,7 @@ $ helmc generate -x manifests workflow-${DESIRED_WORKFLOW_RELEASE}
 
 After generating new manifests in the previous step, copy the current secrets into place:
 
-```
+```shell
 # copy your active database secrets into the helmc workspace for the desired version
 $ cp ~/active-deis-database-secret-creds.yaml \
 	$(helmc home)/workspace/charts/workflow-${DESIRED_WORKFLOW_RELEASE}/manifests/deis-database-secret-creds.yaml
@@ -131,7 +131,7 @@ Worfklow will continue to flow between the `uninstall` and `install` commands.
 If Workflow is not configured to use off-cluster Postgres the Workflow API will experience a brief period of downtime
 while the database component recovers from backup.
 
-```
+```shell
 # uninstall workflow
 $ helmc uninstall workflow-${PREVIOUS_WORKFLOW_RELEASE} -n deis
 
@@ -143,7 +143,7 @@ $ helmc install workflow-${DESIRED_WORKFLOW_RELEASE}
 
 Verify that all components have started and passed their readiness checks:
 
-```
+```shell
 $ kubectl --namespace=deis get pods
 NAME                                     READY     STATUS    RESTARTS   AGE
 deis-builder-2448122224-3cibz            1/1       Running   0          5m
@@ -179,6 +179,6 @@ deis-workflow-manager-2654760652-kitf9   1/1       Running   0          5m
 
 Your deis platform users should now upgrade their deis client to avoid getting `WARNING: Client and server API versions do not match. Please consider upgrading.` warnings.
 
-```
-curl -sSL http://deis.io/deis-cli/install-v2.sh | bash && sudo mv deis $(which deis)
+```shell
+$ curl -sSL http://deis.io/deis-cli/install-v2.sh | bash && sudo mv deis $(which deis)
 ```

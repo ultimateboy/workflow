@@ -23,7 +23,7 @@ Available units for memory are:
 
 Use `deis limits:set` to restrict memory by process type:
 
-```
+```shell
 $ deis limits:set web=64M
 Applying limits... done
 
@@ -38,7 +38,7 @@ Unlimited
 
 If you would like to remove any configured memory limits use `deis limits:unset web`:
 
-```
+```shell
 $ deis limits:unset web
 Applying limits... done
 
@@ -63,7 +63,7 @@ equivalent to 1000 milli-cores. To dedicate half a core to your process, you wou
 | 250m  | 250 milli-cores == 25% CPU core   |
 | 100m  | 100 milli-cores == 10% CPU core   |
 
-```
+```shell
 $ deis limits:set web=250m --cpu
 Applying limits... done
 
@@ -78,7 +78,7 @@ web     250m
 
 You can verify the CPU and memory limits by inspecting the application process Pod with `kubectl`:
 
-```
+```shell
 $ deis ps
 === indoor-whitecap Processes
 --- web:
@@ -104,7 +104,7 @@ Containers:
 
 To unset a CPU limit use `deis limits:unset web --cpu`:
 
-```
+```shell
 $ deis limits:unset web --cpu
 Applying limits... done
 

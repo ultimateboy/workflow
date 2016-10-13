@@ -68,8 +68,11 @@ Generate the Workflow chart by running `helmc generate -x manifests workflow-v2.
 Helm Classic stores the object storage configuration as a Kubernetes secret.
 
 You may check the contents of the generated file named `deis-objectstorage-secret.yaml` in the `helmc` workspace directory:
-```
+
+```shell
 $ cat $(helmc home)/workspace/charts/workflow-v2.7.0/manifests/deis-objectstorage-secret.yaml
+```
+```yaml
 apiVersion: v1
 kind: Secret
 metadata:

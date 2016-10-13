@@ -20,7 +20,7 @@ Within the off-cluster RDBMS, manually provision the following:
 
 If you are able to log into the RDBMS as a superuser or a user with appropriate permissions, this process will _typically_ look like this:
 
-```
+```shell
 $ psql -h <host> -p <port> -d postgres -U <"postgres" or your own username>
 > create user <deis username; typically "deis"> with password '<password>';
 > create database <database name; typically "deis"> with owner <deis username>;

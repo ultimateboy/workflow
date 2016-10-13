@@ -24,8 +24,8 @@ Deis Workflow currently supports
     * **1.** Using environment variables: Set `REGISTRY_LOCATION` to `off-cluster`, `ecr` or `gcr`, then set the following environment variables accordingly.
           * For `REGISTRY_LOCATION=gcr`:
 
-            ```
-            export GCR_KEY_JSON, GCR_HOSTNAME
+            ```shell
+            $ export GCR_KEY_JSON, GCR_HOSTNAME
             ```
 
             `GCR_KEY_JSON`: The contents of the [service account][srvAccount] JSON key file.  
@@ -33,8 +33,8 @@ Deis Workflow currently supports
 
           * For `REGISTRY_LOCATION=ecr`:
 
-            ```
-            export ECR_ACCESS_KEY, ECR_SECRET_KEY, ECR_REGION, ECR_REGISTRY_ID, ECR_HOSTNAME
+            ```shell
+            $ export ECR_ACCESS_KEY, ECR_SECRET_KEY, ECR_REGION, ECR_REGISTRY_ID, ECR_HOSTNAME
             ```
 
               `ECR_ACCESS_KEY` and `ECR_SECRET_KEY` are an AWS access key ID and secret access key with permission to use the container registry. To use [IAM credentials][aws-iam], it is not necessary to set either value, in which case the credentials used to provision the cluster will be used.
@@ -46,8 +46,8 @@ Deis Workflow currently supports
 
           * For `REGISTRY_LOCATION=off-cluster`:
 
-            ```
-            export REGISTRY_USERNAME, REGISTRY_PASSWORD, REGISTRY_HOSTNAME, REGISTRY_ORGANIZATION
+            ```shell
+            $ export REGISTRY_USERNAME, REGISTRY_PASSWORD, REGISTRY_HOSTNAME, REGISTRY_ORGANIZATION
             ```
 
             If `REGISTRY_HOSTNAME` is not set then Workflow assumes it to be Dockerhub.  

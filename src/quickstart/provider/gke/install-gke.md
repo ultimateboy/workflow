@@ -4,7 +4,7 @@
 
 First check that the `helm` command is available and the version is 0.8 or newer.
 
-```
+```shell
 $ helmc --version
 helmc version 0.8.1+a9c55cf
 ```
@@ -12,7 +12,7 @@ helmc version 0.8.1+a9c55cf
 Ensure the `kubectl` client is installed and can connect to your Kubernetes cluster. `helm` will
 use it to communicate. You can test that it is working properly by running:
 
-```
+```shell
 $ helmc target
 Kubernetes master is running at https://104.154.234.246
 GLBCDefaultBackend is running at https://104.154.234.246/api/v1/proxy/namespaces/kube-system/services/default-http-backend
@@ -31,7 +31,7 @@ need to install Deis onto your Kubernetes cluster, with a single `helmc install`
 
 Run the following command to add this repository to Helm:
 
-```
+```shell
 $ helmc repo add deis https://github.com/deis/charts
 ```
 
@@ -39,7 +39,7 @@ $ helmc repo add deis https://github.com/deis/charts
 
 Now that you have Helm installed and have added the Deis Chart Repository, install Workflow by running:
 
-```
+```shell
 $ helmc fetch deis/workflow-v2.7.0            # fetches the chart into a
                                               # local workspace
 $ helmc generate -x manifests workflow-v2.7.0 # generates various secrets
@@ -51,12 +51,12 @@ Helm Classic will install a variety of Kubernetes resources in the `deis` namesp
 You'll need to wait for the pods that it launched to be ready. Monitor their status
 by running:
 
-```
+```shell
 $ kubectl --namespace=deis get pods
 ```
 
 If you would like `kubectl` to automatically update as the pod states change, run (type Ctrl-C to stop the watch):
-```
+```shell
 $ kubectl --namespace=deis get pods -w
 ```
 
@@ -65,7 +65,7 @@ installation: if a component's dependencies are not yet available, that componen
 automatically restart it.
 
 Here, you can see that controller, builder and registry all took a few loops before there were able to start:
-```
+```shell
 $ kubectl --namespace=deis get pods
 NAME                          READY     STATUS    RESTARTS   AGE
 deis-builder-miekp            1/1       Running   1          2m

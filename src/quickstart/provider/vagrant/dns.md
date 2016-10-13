@@ -8,7 +8,7 @@ Kubernetes overlay network.
 
 First, determine the ip address allocated to your worker node.
 
-```
+```shell
 $ kubectl get nodes
 NAME                STATUS    AGE
 kubernetes-node-1   Ready     4h
@@ -20,7 +20,7 @@ Here, our node address is `10.254.1.3`.
 
 Next, determine the ip address of the Deis Workflow router component:
 
-```
+```shell
 $ kubectl --namespace=deis describe service deis-router | egrep IP
 IP:                     10.247.114.249
 ```
@@ -30,12 +30,12 @@ The service address for the router is `10.247.114.249`.
 Last, we need to inform your machine how to reach the service address.
 
 Add routes on Linux with:
-```
+```shell
 $ sudo route add 10.247.114.249 gw 10.245.1.3
 ```
 
 Add routes on Mac OS X with:
-```
+```shell
 $ sudo route add 10.247.114.249 10.245.1.3
 Password:
 add host 10.247.114.249: gateway 10.245.1.3
@@ -47,13 +47,13 @@ node found at `10.245.1.3`.
 **Remember when you are finished experimenting, you should remove the route so you aren't confused later:**
 
 Remove routes on Linux with:
-```
+```shell
 $ sudo route del 10.247.114.249
 ```
 
 Remove routes on Mac OS X with:
 
-```
+```shell
 $ sudo route delete 10.247.114.249 10.245.1.3
 delete host 10.247.114.249: gateway 10.245.1.3
 ```
@@ -68,7 +68,7 @@ To verify the Workflow API server and nip.io, construct your hostname by taking 
 and adding `nip.io`. For our example above, the address would be: `10.247.114.249`.
 
 Nip answers with the ip address no matter the hostname:
-```
+```shell
 $ host 10.247.114.249.nip.io
 10.247.114.249.nip.io has address 10.247.114.249
 $ host something-random.10.247.114.249.nip.io
@@ -77,7 +77,7 @@ something-random.10.247.114.249.nip.io has address 10.247.114.249
 
 By default, any HTTP traffic for the hostname `deis` will be sent to the Workflow API service. To test that everything is connected properly you may validate connectivity using `curl`:
 
-```
+```shell
 $ curl http://deis.10.247.114.249.nip.io/v2/ && echo
 {"detail":"Authentication credentials were not provided."}
 ```

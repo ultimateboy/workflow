@@ -53,8 +53,8 @@ The documentation site requires either a local installation of [MkDocs][] or acc
 
 Install [MkDocs][] and required dependencies:
 
-```
-make deps
+```shell
+$ make deps
 ```
 
 ## Building Documentation
